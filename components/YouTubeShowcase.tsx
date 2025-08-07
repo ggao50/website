@@ -30,15 +30,17 @@ const YouTubeShowcase = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           <div className="relative w-full max-w-5xl mx-auto rounded-lg overflow-hidden shadow-2xl border-2 border-white/60 hover:border-white/80 transition-all duration-300">
-            <div className="aspect-video">
+            <div className="aspect-video relative">
               <iframe
-                src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&showinfo=0&modestbranding=1&enablejsapi=1&autoplay=1&mute=1`}
+                src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&showinfo=0&modestbranding=1&enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&disablekb=1`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="w-full h-full"
               />
+              {/* Invisible overlay to prevent interaction */}
+              <div className="absolute inset-0 z-10" style={{ pointerEvents: 'auto' }} />
             </div>
           </div>
         </motion.div>
