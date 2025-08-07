@@ -266,21 +266,20 @@ const GrantWorks = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex-1 relative bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16 overflow-hidden"
+                className="flex-1 overflow-auto bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16 -webkit-overflow-scrolling-touch"
+                style={{ WebkitOverflowScrolling: 'touch' }}
               >
-                {/* Mobile-friendly PDF viewer with better scrolling */}
-                <div className="w-full h-full overflow-auto -webkit-overflow-scrolling-touch" style={{ WebkitOverflowScrolling: 'touch' }}>
-                  <iframe
-                    src={`${selectedProject.pdfPath}#view=FitW&toolbar=1&navpanes=0&scrollbar=1`}
-                    className="w-full min-h-[300vh] sm:min-h-[100vh]"
-                    title={selectedProject.title}
-                    style={{ 
-                      border: 'none',
-                      display: 'block'
-                    }}
-                    allow="fullscreen"
-                  />
-                </div>
+                {/* Mobile-friendly PDF viewer */}
+                <iframe
+                  src={`${selectedProject.pdfPath}#toolbar=1&navpanes=0`}
+                  className="w-full h-[200vh] sm:h-full sm:min-h-[600px]"
+                  title={selectedProject.title}
+                  style={{ 
+                    border: 'none',
+                    display: 'block'
+                  }}
+                  allow="fullscreen"
+                />
               </motion.div>
             ) : (
               <>
