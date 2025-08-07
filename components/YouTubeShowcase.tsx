@@ -39,14 +39,8 @@ const YouTubeShowcase = () => {
                 allowFullScreen
                 className="w-full h-full"
               />
-              {/* Clickable overlay that redirects to YouTube */}
-              <a 
-                href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 z-10 cursor-pointer"
-                aria-label="Watch on YouTube"
-              />
+              {/* Invisible overlay to prevent interaction */}
+              <div className="absolute inset-0 z-10" style={{ pointerEvents: 'auto' }} />
             </div>
           </div>
         </motion.div>
