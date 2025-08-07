@@ -25,7 +25,7 @@ const projects: Project[] = [
     description: 'Latest competition robot featuring 4-stage pivoting telescoping arm, custom drivetrain, and advanced autonomous systems',
     gradient: 'linear-gradient(135deg, #3b82f6, #1e40af)',
     achievements: ['288 pts High Score', '176 OPR', 'Level 2 Ascent in 4 seconds', '3-5 Sample Autonomous'],
-    pdfPath: '/portfolio-2025.pdf',
+    pdfPath: '/2025.pdf',
     coverImage: '/2025-robot.png',
   },
   {
@@ -36,7 +36,7 @@ const projects: Project[] = [
     description: "First robot in team's history to make playoffs at the World Championships, featuring innovative intake mechanisms and precision scoring",
     gradient: 'linear-gradient(135deg, #10b981, #059669)',
     coverImage: '/2024-robot.png',
-    pdfPath: '/Copy of 2024 MTI.pdf',
+    pdfPath: '/2024.pdf',
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const projects: Project[] = [
     description: 'State Championship finalist robot featuring 5 cone autonomous and lightweight virtual four bar arm.',
     gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
     coverImage: '/2023-robot.png',
-    pdfPath: '/Copy of V4 PowerPlay globulous glop.pdf',
+    pdfPath: '/2023.pdf',
   },
   {
     id: 4,
@@ -56,7 +56,7 @@ const projects: Project[] = [
     description: 'Our first custom robot, utilizing an innovative horizontal slide system, making it to the Maryland Technical Invitation for the first time ever',
     gradient: 'linear-gradient(135deg, #ef4444, #dc2626)',
     coverImage: '/2022-robot.png',
-    pdfPath: '/310 RobotFlyer2022.pdf',
+    pdfPath: '/2022.pdf',
   },
 ]
 
