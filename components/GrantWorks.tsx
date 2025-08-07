@@ -202,21 +202,42 @@ const GrantWorks = () => {
               transition={{ delay: 0.2, duration: 0.4 }}
               className="flex justify-between items-center px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-10"
             >
-              <div>
+              <div className="flex-1">
                 <h2 className="text-lg sm:text-2xl font-bold text-white drop-shadow-lg">{selectedProject.title}</h2>
                 <p className="text-white/70 text-xs sm:text-sm">{selectedProject.category} • {selectedProject.year}</p>
               </div>
-              <motion.button
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setSelectedProject(null)}
-                className="text-white/70 hover:text-white transition-all duration-300 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
-              </motion.button>
+              
+              {/* Mobile Download Button */}
+              <div className="flex items-center gap-2">
+                <motion.a
+                  href={selectedProject.pdfPath}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="sm:hidden text-white/70 hover:text-white transition-all duration-300 p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+                  title="Download PDF"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 15V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.a>
+                
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setSelectedProject(null)}
+                  className="text-white/70 hover:text-white transition-all duration-300 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                    <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                  </svg>
+                </motion.button>
+              </div>
             </motion.div>
             
             {selectedProject.pdfPath ? (
@@ -224,13 +245,15 @@ const GrantWorks = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex-1 overflow-hidden bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16"
+                className="flex-1 overflow-auto bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16"
               >
+                {/* Mobile-friendly PDF viewer with toolbar */}
                 <iframe
-                  src={`${selectedProject.pdfPath}#toolbar=0&navpanes=0&scrollbar=0`}
-                  className="w-full h-full"
+                  src={`${selectedProject.pdfPath}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
+                  className="w-full h-full min-h-[600px]"
                   title={selectedProject.title}
                   style={{ border: 'none' }}
+                  allow="fullscreen"
                 />
               </motion.div>
             ) : (
