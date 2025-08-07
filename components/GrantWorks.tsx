@@ -191,25 +191,26 @@ const GrantWorks = () => {
               scale: { duration: 0.4 },
               opacity: { duration: 0.3 }
             }}
-            className="bg-black rounded-2xl w-[95vw] h-[95vh] overflow-hidden flex flex-col shadow-2xl"
+            className="bg-black rounded-2xl w-[95vw] h-[95vh] md:w-[95vw] md:h-[95vh] overflow-hidden flex flex-col shadow-2xl
+                       sm:rounded-2xl rounded-none sm:w-[95vw] sm:h-[95vh] w-full h-full"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Clean Header */}
+            {/* Clean Header - Responsive */}
             <motion.div 
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.4 }}
-              className="flex justify-between items-center px-6 py-4 bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-10"
+              className="flex justify-between items-center px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-10"
             >
               <div>
-                <h2 className="text-2xl font-bold text-white drop-shadow-lg">{selectedProject.title}</h2>
-                <p className="text-white/70 text-sm">{selectedProject.category} • {selectedProject.year}</p>
+                <h2 className="text-lg sm:text-2xl font-bold text-white drop-shadow-lg">{selectedProject.title}</h2>
+                <p className="text-white/70 text-xs sm:text-sm">{selectedProject.category} • {selectedProject.year}</p>
               </div>
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedProject(null)}
-                className="text-white/70 hover:text-white transition-all duration-300 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+                className="text-white/70 hover:text-white transition-all duration-300 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
@@ -223,7 +224,7 @@ const GrantWorks = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex-1 overflow-hidden bg-white rounded-xl m-3 mt-16"
+                className="flex-1 overflow-hidden bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16"
               >
                 <iframe
                   src={`${selectedProject.pdfPath}#toolbar=0&navpanes=0&scrollbar=0`}
