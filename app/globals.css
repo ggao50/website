@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent-blue: rgb(28, 134, 255);
+    --accent-green: #02c28f;
+    --bg-black: #000000;
+    --text-light: rgb(239, 239, 239);
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 12px;
+  }
+
+  body {
+    background: radial-gradient(ellipse at center top, #1a1a2e 0%, #0f0f1e 25%, #040408 50%, #000000 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.2em;
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+}
+
+@layer components {
+  /* Black hole gradient animation */
+  @keyframes blackHolePulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+  
+  .black-hole-gradient {
+    background: radial-gradient(ellipse at center, 
+      rgba(138, 43, 226, 0.1) 0%, 
+      rgba(75, 0, 130, 0.05) 25%, 
+      transparent 70%);
+    animation: blackHolePulse 8s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Enhanced section spacing utilities */
+  .mb-20 {
+    margin-bottom: 5rem;
+  }
+  
+  .mb-28 {
+    margin-bottom: 7rem;
+  }
+  
+  /* Better responsive spacing */
+  @media (max-width: 640px) {
+    .py-32 {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+}
