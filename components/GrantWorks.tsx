@@ -84,8 +84,16 @@ const GrantWorks = () => {
   }, [selectedProject])
   
   const handleProjectClick = (project: Project) => {
-    setSelectedProject(project)
-    // You can add modal opening logic here or navigation
+    // Check if mobile device (viewport width < 640px)
+    const isMobile = window.innerWidth < 640
+    
+    if (isMobile && project.pdfPath) {
+      // Open PDF in new tab on mobile
+      window.open(project.pdfPath, '_blank')
+    } else {
+      // Open modal on desktop
+      setSelectedProject(project)
+    }
     console.log('Project clicked:', project.title)
   }
 
