@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Project {
   id: number
@@ -63,6 +63,25 @@ const projects: Project[] = [
 const GrantWorks = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+    
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }, [selectedProject])
   
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project)
@@ -178,8 +197,9 @@ const GrantWorks = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl overscroll-none"
           onClick={() => setSelectedProject(null)}
+          style={{ touchAction: 'none' }}
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: 20 }}
@@ -192,8 +212,9 @@ const GrantWorks = () => {
               opacity: { duration: 0.3 }
             }}
             className="bg-black rounded-2xl w-[95vw] h-[95vh] md:w-[95vw] md:h-[95vh] overflow-hidden flex flex-col shadow-2xl
-                       sm:rounded-2xl rounded-none sm:w-[95vw] sm:h-[95vh] w-full h-full"
+                       sm:rounded-2xl rounded-none sm:w-[95vw] sm:h-[95vh] w-screen h-screen fixed inset-0 sm:relative sm:w-[95vw] sm:h-[95vh]"
             onClick={(e) => e.stopPropagation()}
+            style={{ touchAction: 'auto' }}
           >
             {/* Clean Header - Responsive */}
             <motion.div 
@@ -245,12 +266,13 @@ const GrantWorks = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex-1 overflow-auto bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16"
+                className="flex-1 overflow-auto bg-white rounded-xl m-0 sm:m-3 mt-12 sm:mt-16 -webkit-overflow-scrolling-touch"
+                style={{ WebkitOverflowScrolling: 'touch' }}
               >
                 {/* Mobile-friendly PDF viewer with toolbar */}
                 <iframe
                   src={`${selectedProject.pdfPath}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                  className="w-full h-full min-h-[600px]"
+                  className="w-full h-full min-h-[150vh] sm:min-h-[600px]"
                   title={selectedProject.title}
                   style={{ border: 'none' }}
                   allow="fullscreen"
